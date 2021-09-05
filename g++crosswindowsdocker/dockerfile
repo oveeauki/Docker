@@ -1,5 +1,7 @@
-# In terminal type sudo docker run -it <image_name>
+# in terminal => docker run -v $HOME/koo/C\&C++Xd:/freDiKoti -it <image name>
 FROM ubuntu
 RUN apt update
 RUN apt install -y gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 g++ nano
 RUN echo 'alias g++win="x86_64-w64-mingw32-g++ -static-libgcc -static-libstdc++"' >> /root/.bashrc
+RUN echo 'echo set completion-ignore-case on | tee -a /etc/inputrc' >> /root/.bashrc
+WORKDIR '/freDiKoti'
