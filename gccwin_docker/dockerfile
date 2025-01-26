@@ -1,6 +1,7 @@
 # in terminal type :
 # docker run -v "$(pwd)":/vol -w /vol -it gccwin
 # also remember to copy .oh-my-zsh , .dircolors and .zshrc into dockerfile folder
+
 FROM ubuntu
 
 RUN apt update && apt install -y \
