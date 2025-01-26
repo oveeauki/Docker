@@ -1,0 +1,29 @@
+# in terminal type :
+# docker run -v "$(pwd)":/vol -w /vol -it gccwin
+FROM ubuntu
+
+RUN apt update && apt install -y \
+    gcc-mingw-w64-x86-64 \
+    g++ \
+    nano \
+    zsh \
+    curl \
+    git \
+    tree \
+    grc
+
+COPY .oh-my-zsh /root/.oh-my-zsh
+COPY .zshrc /root/.zshrc
+COPY .dircolors /root/.dircolors
+
+RUN chmod -R g-w,o-w /root/.oh-my-zsh && \
+    chown -R root:root /root/.oh-my-zsh
+
+RUN chsh -s $(which zsh)
+ENV SHELL /usr/bin/zsh
+
+RUN echo 'alias wincomp="x86_64-w64-mingw32-gcc -static"' >> /root/.zshrc
+
+WORKDIR '/vol'
+
+CMD ["zsh"]
